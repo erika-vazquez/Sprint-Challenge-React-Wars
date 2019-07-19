@@ -5,6 +5,7 @@ import { Container } from "semantic-ui-react";
 
 import SWHeader from "./components/Header/SWHeader";
 import SWCardGrid from "./components/Cards/SWCardGrid";
+import SWPagination from "./components/Pagination/SWPagination";
 import Loading from "./components/Loading/Loading";
 
 const App = () => {
@@ -17,10 +18,18 @@ const App = () => {
 
   const [people, setPeople] = useState();
   // TODO: ADD STATE FOR PAGES AND ID? PAGINATION STRETCH
+  const [page, setPage] = useState();
 
   useEffect(() => {
     const fetchPeople = async () => {
-      return await axios.get("https://swapi.co/api/people/");
+      return await axios.get(
+        "https://swapi.co/api/people/",
+        page && {
+          params: {
+            page: page
+          }
+        }
+      );
     };
 
     fetchPeople()
@@ -30,14 +39,17 @@ const App = () => {
       .catch(err => {
         console.log("Error has occurred: ", err);
       });
-  }, []);
+  }, [page]);
 
-  console.log("List of people: ", people);
+  const getCurrentPage = page => {
+    setPage(page.activePage);
+  };
 
   return (
     <Container className="App">
       <SWHeader />
       {people ? <SWCardGrid people={people.results} /> : <Loading />}
+      {people && <SWPagination getCurrentPage={getCurrentPage} />}
     </Container>
   );
 };
