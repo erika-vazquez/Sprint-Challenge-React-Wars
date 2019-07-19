@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import CharactersList from './components/CharactersList'
 import axios from 'axios'
+//import { Container, Header, Input, Card } from "semantic-ui-react";
+//import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
-  const [data, setData] = useState({});
+  const [char, setChar] = useState([]);
 
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
@@ -14,11 +16,10 @@ const App = () => {
 useEffect(() => {
   console.log("hello")
   axios
-  .get('https://swapi.co/api/people/1/')
+  .get('https://swapi.co/api/people/')
   .then(response =>{
-    console.log(response.data)
-    setData(response.data)
-    
+    console.log(response.data.results)
+    setChar(response.data.results);
   })
 
 }, []);
@@ -26,11 +27,14 @@ useEffect(() => {
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-    <CharactersList name={data.name}
-    gender={data.gender}
-    height={data.height}
 
-    />
+      {char.map((data, index) => (
+        <CharactersList key={index} 
+          name={data.name}
+          height={data.height}
+          gender={data.gender}
+           /> 
+      ))}   
     </div>
   );
 }
