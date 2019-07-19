@@ -17,7 +17,6 @@ const App = () => {
   // sync up with, if any.
 
   const [people, setPeople] = useState();
-  // TODO: ADD STATE FOR PAGES AND ID? PAGINATION STRETCH
   const [page, setPage] = useState();
 
   useEffect(() => {
