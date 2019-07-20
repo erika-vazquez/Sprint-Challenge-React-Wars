@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import CharactersList from './components/CharactersList'
 import axios from 'axios'
-//import { Container, Header, Input, Card } from "semantic-ui-react";
-//import "semantic-ui-css/semantic.min.css";
+import { Container, Header, Input, Card } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -25,9 +25,10 @@ useEffect(() => {
 }, []);
 
   return (
+    <Container style={{ width: "1280px"}}
+    >
     <div className="App">
       <h1 className="Header">React Wars</h1>
-
       {char.map((data, index) => (
         <CharactersList key={index} 
           name={data.name}
@@ -36,6 +37,7 @@ useEffect(() => {
            /> 
       ))}   
     </div>
+    </Container>
   );
 }
 
