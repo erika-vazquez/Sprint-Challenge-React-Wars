@@ -1,19 +1,10 @@
-
-
-
 .App {
   text-align: center;
   background-color: black;
 }
-.Header {
-  color: #eee4e4;
-  text-shadow: 1px 1px 5px #fff;
-}
+
 /* write your parent styles in here for your App.js */
 body{
   display: flex;
   justify-content: center;
-}
-.character-card{
-  border: 2px blue solid;
 }

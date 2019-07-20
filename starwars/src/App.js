@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import CharactersList from './components/CharactersList'
 import axios from 'axios'
-import { Container, Header, Input, Card } from "semantic-ui-react";
+import { Container, Header, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
@@ -28,7 +28,8 @@ useEffect(() => {
     <Container style={{ width: "1280px"}}
     >
     <div className="App">
-      <h1 className="Header">React Wars</h1>
+      <Header style={{ color: 'blue', fontSize:'50px',
+  textShadow: '1px 1px 5px #fff'}}>React Wars</Header>
       {char.map((data, index) => (
         <CharactersList key={index} 
           name={data.name}
